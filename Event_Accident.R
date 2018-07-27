@@ -1,7 +1,6 @@
 # Risk Of Life
 # Implementation of the event "Accident"
 # input='none,bool_War', output='per_disability'
-# written by Markus Reitschuster on 20.7.18
 
 Event_Accident <- function(input_name,input)
 {
