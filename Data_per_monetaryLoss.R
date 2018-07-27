@@ -1,6 +1,5 @@
 # Risk Of Life
 # Implementation of the validation for the data type per_monetaryLoss
-# written by Markus Reitschuster on 24.7.18
 
 Val_Data_per_monetaryLoss <- function(per_monetaryLoss)
 {
