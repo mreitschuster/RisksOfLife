@@ -1,7 +1,6 @@
 # Risk Of Life
 # Implementation of the impact "Loss of Earnings"
 # input='bool_dead', output='data_monetaryLoss'
-# written by Markus Reitschuster on 20.7.18
 
 Impact_LoE <- function(input_name,input)
 {
