@@ -1,6 +1,5 @@
 # Risk Of Life
 # Implementation of the validation for the data type bool_war
-# written by Markus Reitschuster on 24.7.18
 
 Val_Data_bool_War <- function(bool_war)
 {
