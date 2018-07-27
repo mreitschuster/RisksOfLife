@@ -1,6 +1,6 @@
 # Risk Of Life
 # Implementation of the validation for the data type per_disability
-# written by Markus Reitschuster on 24.7.18
+
 
 Val_Data_per_disability <- function(per_disability)
 {
