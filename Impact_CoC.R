@@ -1,7 +1,6 @@
 # Risk Of Life
 # Implementation of the impact "Cost of Care"
 # input='per_disability', output='data_monetaryLoss'
-# written by Markus Reitschuster on 20.7.18
 
 Impact_CoC <- function(input_name,input)
 {
