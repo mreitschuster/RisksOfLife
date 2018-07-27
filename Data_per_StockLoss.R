@@ -1,6 +1,5 @@
 # Risk Of Life
 # Implementation of the validation for the data type per_StockLoss
-# written by Markus Reitschuster on 24.7.18
 
 Val_Data_per_StockLoss <- function(per_StockLoss)
 {
