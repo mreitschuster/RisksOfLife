@@ -23,7 +23,7 @@
 
 
 RisksOfLife_main <- function(){
-  graph=startGraph("http://localhost:7474/db/data", username="neo4j", password="dumdidumneo4j")
+  graph=startGraph("http://localhost:7474/db/data", username="neo4j", password="neo4j")
   
   # Build the graph. this hopefully will get replaced in the future by a more user-friednly way to input the graph structure to R
   #source(paste(working_folder,'Neo4j_test v4 Build Graph.R',sep=''))
