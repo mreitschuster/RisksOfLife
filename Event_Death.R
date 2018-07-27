@@ -1,9 +1,6 @@
 # Risk Of Life
 # Implementation of the event "Death"
 # input='none,per_disability,bool_War', output='bool_dead'
-# written by Markus Reitschuster on 20.7.18
-
-
 
 Event_Death <- function(input_name,input)
 {
