@@ -13,7 +13,7 @@ graph=startGraph("http://localhost:7474/db/data", username="neo4j", password="du
 
 # Build the graph. this hopefully will get replaced in the future by a more user-friednly way to input the graph structure to R
 #source(paste(working_folder,'Neo4j_test v4 Build Graph.R',sep=''))
-source('Build Graph.R')
+#source('Build Graph.R')
 error_description=Graph_Build(graph)
 rm('Graph_Build')
 
