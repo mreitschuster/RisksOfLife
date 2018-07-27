@@ -1,5 +1,11 @@
-# Risk Of Life
-# Implementation of the validation for the data type bool_war
+#' Data Type - bool_war
+#' 
+#' verifies wether the object has the expected format and fullfills some boundary conditions.
+#' 
+#' @param bool_war put in the object you want to check.
+#' @return none the code will just throw an error if the object is not as expected.  
+#' @export 
+#' 
 
 Val_Data_bool_War <- function(bool_war)
 {

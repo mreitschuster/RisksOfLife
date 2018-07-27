@@ -1,6 +1,12 @@
-# Risk Of Life
-# Implementation of the event "Death"
-# input='none,per_disability,bool_War', output='bool_dead'
+#' Event - Death
+#' 
+#' calculates the probability of death.
+#' 
+#' @param input_name currently only 'none' and 'per_disability' are supported. should include bool_war in the future
+#' @param input e.g. per_disability
+#' @return bool_dead  
+#' @export 
+#' 
 
 Event_Death <- function(input_name,input)
 {

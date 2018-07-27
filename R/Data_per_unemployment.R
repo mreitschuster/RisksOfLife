@@ -1,5 +1,12 @@
-# Risk Of Life
-# Implementation of the validation for the data type per_unemployment
+#' Data Type - per_unemployment
+#' 
+#' verifies wether the object has the expected format and fullfills some boundary conditions.
+#' 
+#' @param per_unemployment put in the object you want to check.
+#' @return none the code will just throw an error if the object is not as expected.  
+#' @export 
+#' 
+
 
 Val_Data_per_unemployment <- function(per_unemployment)
 {

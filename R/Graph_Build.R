@@ -1,4 +1,11 @@
-
+#' Build the Neo4j data used for RisksOfLife
+#' 
+#' This will hopefully be replaced by a load functionality on existing graphs, together with a more intuitive way to create the graphs.
+#' 
+#' @param graph The graph object representing the neo4j database as produced by Rneo4j
+#' @return nothing
+#' @export 
+#' 
 Graph_Build <- function(graph){
     clear(graph, input=FALSE)
     

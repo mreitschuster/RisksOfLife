@@ -1,13 +1,20 @@
-# Risk Of Life
-# Implementation of the impact "Loss of Earnings"
-# input='bool_dead', output='data_monetaryLoss'
+#' Impact - Loss of Earnings
+#' 
+#' given the natural units input it calculates the monetary loss.
+#' 
+#' @param input_name currently only 'bool_dead' is supported
+#' @param input the input data, e.g. the variable 'bool_dead' 
+#' @return data_monetaryLoss  
+#' @export 
+#' 
+
+
 
 Impact_LoE <- function(input_name,input)
 {
   if (input_name=='bool_dead'){
     bool_dead=input
     x=Val_Data_bool_dead(bool_dead)
-  } else if (input_name=='none'){
   } else {
     stop('Error: unknown input.')
   }

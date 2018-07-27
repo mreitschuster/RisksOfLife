@@ -1,5 +1,11 @@
-# Risk Of Life
-# Implementation of the validation for the data type bool_dead
+#' Data Type - bool_dead
+#' 
+#' verifies wether the object has the expected format and fullfills some boundary conditions.
+#' 
+#' @param bool_dead put in the object you want to check.
+#' @return none the code will just throw an error if the object is not as expected.  
+#' @export 
+#' 
 
 Val_Data_bool_dead <- function(bool_dead)
 {

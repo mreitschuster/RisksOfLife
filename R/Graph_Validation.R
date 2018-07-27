@@ -1,5 +1,13 @@
-
-library(RNeo4j)
+#' Validate the Neo4j data used for RisksOfLife
+#' 
+#' This function will give errors or warning depent on urgency.
+#' It checks the graph for being a plausible input for RisksOfLife.
+#' 
+#' @param graph The graph object representing the neo4j database as produced by Rneo4j
+#' @return nothing
+#' @export 
+#' 
+#library(RNeo4j)
 
 
 Graph_Validation<-function(graph){

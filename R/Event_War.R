@@ -1,6 +1,13 @@
-# Risk Of Life
-# Implementation of the event "War"
-# input='none', output='bool_War'
+#' Event - War
+#' 
+#' calculates the probability of a war.
+#' 
+#' @param input_name currently only 'none' is supported
+#' @param input currently unused
+#' @return bool_War  
+#' @export 
+#' 
+
 
 Event_War <- function()
 {

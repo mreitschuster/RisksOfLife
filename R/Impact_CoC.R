@@ -1,13 +1,19 @@
-# Risk Of Life
-# Implementation of the impact "Cost of Care"
-# input='per_disability', output='data_monetaryLoss'
+#' Impact -  Cost of Care
+#' 
+#' given the natural units input it calculates the  the monetary loss.
+#' 
+#' @param input_name currently only 'per_disability' is supported
+#' @param input the input data, e.g. the variable 'per_disability' 
+#' @return data_monetaryLoss  
+#' @export 
+
+
 
 Impact_CoC <- function(input_name,input)
 {
   if (input_name=='per_disability'){
     per_disability=input
     x=Val_Data_per_disability(per_disability)
-  } else if (input_name=='none'){
   } else {
     stop('Error: unknown input.')
   }
