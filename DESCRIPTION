@@ -1,0 +1,12 @@
+Package: RisksOfLife
+Title: RisksOfLife
+Version: 0.0.0.9000
+Authors@R: person("Markus", "Reitschuster", email = "markusre@gmx.net", role = c("aut", "cre"))
+Description: A quantitative model to determine the potential finanical loss due to risks (e.g. war, unemployment, accident).
+Depends: R (>= 3.4.3)
+License: see LICENSE file
+Encoding: UTF-8
+LazyData: true
+
+
+
