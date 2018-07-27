@@ -1,6 +1,5 @@
 # Risk Of Life
 # Implementation of the validation for the data type per_unemployment
-# written by Markus Reitschuster on 24.7.18
 
 Val_Data_per_unemployment <- function(per_unemployment)
 {
