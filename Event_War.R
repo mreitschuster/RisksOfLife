@@ -1,7 +1,6 @@
 # Risk Of Life
 # Implementation of the event "War"
 # input='none', output='bool_War'
-# written by Markus Reitschuster on 20.7.18
 
 Event_War <- function()
 {
