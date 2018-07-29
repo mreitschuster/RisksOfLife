@@ -3,7 +3,7 @@
 #' This function is the main function for RisksOfLife. not sure if I will keep it. I used it to check whether the whole concept actually calculates plausible results.
 #' It will likely be replaced by jaavascript that then directly accesses the "Graph*"-functions
 #' 
-#' @return nothing
+#' @return path_results
 #' @export 
 #' 
 
@@ -18,4 +18,5 @@ RisksOfLife_main <- function(){
   #  calculate risks for all given paths
   path_results=Graph_calculate_paths(paths)
   
+  return(path_results)
 }

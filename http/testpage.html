@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Risks Of Life test page</title>
+        
+        <!-- D3 library -->
+        <script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+  
+        <!-- OpenCPU client library -->
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.opencpu.org/opencpu-0.4.js"></script>
+
+
+
+
+    </head>
+    <body>
+        <h3>Simple transitions</h3>
+        <script>
+            d3.select("body").transition().style("background-color", "lightblue");
+        </script>
+        <svg width = "300" height = "300">
+            <rect x = "20" 
+                y = "20"
+                width = "60"
+                height = "60"
+                fill = "green"
+                transform = "translate(30 30)">
+            </rect>
+        </svg>
+         <script>       
+            //set page to communicate to with "mypackage" on server below
+            ocpu.seturl("https://mreitschuster.ocpu.io/RisksOfLife/R")
+        </script>
+
+    </body>
+</html>

@@ -7,7 +7,7 @@
 RisksOfLife_main()
 }
 \value{
-nothing
+path_results
 }
 \description{
 This function is the main function for RisksOfLife. not sure if I will keep it. I used it to check whether the whole concept actually calculates plausible results.
