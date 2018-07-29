@@ -10,7 +10,14 @@
 #' 
 #' 
 Graph_getAllPaths<-function(Rgraph, startNode, endNode, onlyActive){
+<<<<<<< HEAD
 
+=======
+  #
+  # 
+  # 
+  
+>>>>>>> 07d9b73a6b399179f1b58833c21c3b9d7ea435a4
   if (FALSE){
     startNode='Risk'
     endNode='Monetary_Loss'
@@ -31,7 +38,11 @@ Graph_getAllPaths<-function(Rgraph, startNode, endNode, onlyActive){
   hop_number=1
   new_paths=list()
   for (i in 1:length(paths)){
+<<<<<<< HEAD
    # print(paste('Graph_getAllPaths calling: Path with Index:' , i))
+=======
+    print(paste('Graph_getAllPaths calling: Path with Index:' , i))
+>>>>>>> 07d9b73a6b399179f1b58833c21c3b9d7ea435a4
     new_paths=c(new_paths,recursiveStep_getPath(Rgraph,endNode,onlyActive,hop_number+1,list(paths[[i]])))
   }
   
@@ -53,7 +64,11 @@ recursiveStep_getPath<-function(Rgraph, endNode, onlyActive, hop_number, paths){
   # TODO check for circular references!!!
   # TODO check if arrived at endNode
   
+<<<<<<< HEAD
  #print(paste('recursiveStep_getPath: Hop Number:' ,hop_number))
+=======
+  print(paste('recursiveStep_getPath: Hop Number:' ,hop_number))
+>>>>>>> 07d9b73a6b399179f1b58833c21c3b9d7ea435a4
   
   if (FALSE){
     paths=list(paths[[1]])
