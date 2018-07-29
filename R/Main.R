@@ -18,31 +18,19 @@
 #
 #library(RNeo4j)
 
-#rm(list=ls())
+#     rm(list=ls())
 #working_folder='/mnt/maRAIDfs/Projekte/2018 Risks of Life/'
 
 
 RisksOfLife_main <- function(){
-  graph=startGraph("http://localhost:7474/db/data", username="neo4j", password="neo4j")
-  
-  # Build the graph. this hopefully will get replaced in the future by a more user-friednly way to input the graph structure to R
-  #source(paste(working_folder,'Neo4j_test v4 Build Graph.R',sep=''))
-  #source('Build Graph.R')
-  error_description=Graph_Build(graph)
-  #rm('Graph_Build')
-  
-  # Validation Checks on Graph integrity
-  #source(paste(working_folder,'Neo4j_test v4 Graph Validation.R',sep=''))
-  #source('Graph Validation.R')
-  error_description=Graph_Validation(graph)
-  #rm('Graph_Validation')
-  
+
+  # Build the graph. 
+  Rgraph=Graph_Build()
+
   # get all active routes between risk and loss
-  query='MATCH p=(o{name:"Risk"})-[r:causes*]->(x{name:"Monetary Loss"}) WHERE ALL(y IN rels(p) WHERE y.active = TRUE) RETURN p'
-  data_paths=getPaths(graph,query) # paths are a special object in Neo4j (i think)
-  data_nodes=lapply(data_paths,nodes) # nodes is a function to extract the node information from a path. we want the node inofs from all paths.
+  paths<-Graph_getAllPaths(Rgraph, 'Risk', 'Monetary_Loss', FALSE)
   
-  
+
   print(paste('Number of different paths:', length(data_nodes)))
   for (i_path in 1:length(data_nodes)){
     print(i_path)
@@ -59,7 +47,7 @@ RisksOfLife_main <- function(){
         code=substr(code,1,nchar(code)-2)
         funct=match.fun(code)
         var_obj=funct(input_name=data_name,input=var_obj)
-  
+        
         data_nodes[[i_path]][[j_node]]$output=var_obj
         
       } 

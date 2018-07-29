@@ -19,3 +19,16 @@ Event_War <- function()
   
   return(bool_war)
 }
+
+
+#' Event - War
+#' 
+#' build the nodes and edges in the graph object necessary to include the Loss Aggregator
+#' @param Rgraph The Rgraph object (package specific object to save the graph)
+#' @return Rgraph
+#' @export 
+#' 
+build_graph_Event_War<-function(Rgraph){
+  Rgraph=rbind(Rgraph,c('Risk','Data_none','Event_War',F))
+  return(Rgraph)
+}

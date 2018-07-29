@@ -2,15 +2,12 @@
 % Please edit documentation in R/Graph_Build.R
 \name{Graph_Build}
 \alias{Graph_Build}
-\title{Build the Neo4j data used for RisksOfLife}
+\title{Build causality Graph for RisksOfLife}
 \usage{
-Graph_Build(graph)
-}
-\arguments{
-\item{graph}{The graph object representing the neo4j database as produced by Rneo4j}
+Graph_Build()
 }
 \value{
-nothing
+Rgraph The object that represents the graph structure / the causal chain
 }
 \description{
 This will hopefully be replaced by a load functionality on existing graphs, together with a more intuitive way to create the graphs.

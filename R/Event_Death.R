@@ -43,3 +43,18 @@ Event_Death <- function(input_name,input)
   return(bool_dead)
   
 }
+
+#' Event - Death
+#' 
+#' build the nodes and edges in the graph object necessary to include the Loss Aggregator
+#' @param Rgraph The Rgraph object (package specific object to save the graph)
+#' @return Rgraph
+#' @export 
+#' 
+build_graph_Event_Death<-function(Rgraph){
+  Rgraph=rbind(Rgraph,c('Risk','Data_none','Event_Death',T))
+  Rgraph=rbind(Rgraph,c('Event_Accident','Data_per_disability','Event_Death',T))
+  Rgraph=rbind(Rgraph,c('Event_Illness','Data_per_disability','Event_Death',F))
+  Rgraph=rbind(Rgraph,c('Event_War','Data_bool_War','Event_Death',F))
+  return(Rgraph)
+}
