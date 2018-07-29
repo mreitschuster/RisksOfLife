@@ -7,10 +7,7 @@ export(Event_StockCrash)
 export(Event_Unemployment)
 export(Event_War)
 export(Graph_Build)
-<<<<<<< HEAD
 export(Graph_calculate_paths)
-=======
->>>>>>> 07d9b73a6b399179f1b58833c21c3b9d7ea435a4
 export(Graph_getAllPaths)
 export(Impact_CoC)
 export(Impact_LoE)

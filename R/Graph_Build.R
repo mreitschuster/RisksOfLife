@@ -21,10 +21,6 @@ Graph_Build <- function(){
     Rgraph=build_graph_Impact_CoC(Rgraph)
     Rgraph=build_graph_Monetary_Loss(Rgraph)
     
-    
-    
-    
-    Rgraph=Rgraph[-1,]
+    Rgraph=Rgraph[-1,] # remove the NA row
     return(Rgraph)
-    
 }

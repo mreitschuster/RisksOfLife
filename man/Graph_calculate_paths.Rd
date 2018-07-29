@@ -4,7 +4,7 @@
 \alias{Graph_calculate_paths}
 \title{calculate given paths}
 \usage{
-Graph_calculate_paths()
+Graph_calculate_paths(paths)
 }
 \arguments{
 \item{paths}{The paths object representing the causality chains}

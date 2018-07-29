@@ -13,10 +13,6 @@ Graph_getAllPaths(Rgraph, startNode, endNode, onlyActive)
 Rgraph The object that represents the graph structure / the causal chain
 }
 \description{
-<<<<<<< HEAD
 Currently no circular paths are allowed, e.g. in one path the same node cannot be hit more than once.
 This might be subject to change. Currently I assume such circular dependencies are not relevant in the overall calculation as their probability is extremly small.
-=======
-This will hopefully be replaced by a load functionality on existing graphs, together with a more intuitive way to create the graphs.
->>>>>>> 07d9b73a6b399179f1b58833c21c3b9d7ea435a4
 }
