@@ -6,7 +6,6 @@
 #' @export 
 #' 
 
-
 Graph_calculate_paths <- function(){
   
   print(paste('Number of different paths:', length(paths)))
