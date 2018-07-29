@@ -18,5 +18,5 @@ RisksOfLife_main <- function(){
   #  calculate risks for all given paths
   path_results=Graph_calculate_paths(paths)
   
-  return(path_results)
+  return('I am desperate to het JS running....')
 }
