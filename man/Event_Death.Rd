@@ -7,7 +7,7 @@
 Event_Death(input_name, input)
 }
 \arguments{
-\item{input_name}{currently only 'none' and 'per_disability' are supported. should include bool_war in the future}
+\item{input_name}{currently only 'Data_none' and 'Data_per_disability' are supported. should include bool_war in the future}
 
 \item{input}{e.g. per_disability}
 }

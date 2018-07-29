@@ -2,7 +2,7 @@
 #' 
 #' calculates the probability of death.
 #' 
-#' @param input_name currently only 'none' and 'per_disability' are supported. should include bool_war in the future
+#' @param input_name currently only 'Data_none' and 'Data_per_disability' are supported. should include bool_war in the future
 #' @param input e.g. per_disability
 #' @return bool_dead  
 #' @export 
@@ -11,10 +11,10 @@
 Event_Death <- function(input_name,input)
 {
 
-  if (input_name=='per_disability'){
+  if (input_name=='Data_per_disability'){
     per_disability=input
     x=Val_Data_per_disability(per_disability)
-  } else if (input_name=='none'){
+  } else if (input_name=='Data_none'){
   } else {
     stop('Error: unknown input.')
   }
@@ -42,4 +42,19 @@ Event_Death <- function(input_name,input)
     }
   return(bool_dead)
   
+}
+
+#' Event - Death
+#' 
+#' build the nodes and edges in the graph object necessary to include the Loss Aggregator
+#' @param Rgraph The Rgraph object (package specific object to save the graph)
+#' @return Rgraph
+#' @export 
+#' 
+build_graph_Event_Death<-function(Rgraph){
+  Rgraph=rbind(Rgraph,c('Risk','Data_none','Event_Death',T))
+  Rgraph=rbind(Rgraph,c('Event_Accident','Data_per_disability','Event_Death',T))
+  Rgraph=rbind(Rgraph,c('Event_Illness','Data_per_disability','Event_Death',F))
+  Rgraph=rbind(Rgraph,c('Event_War','Data_bool_War','Event_Death',F))
+  return(Rgraph)
 }

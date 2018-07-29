@@ -7,7 +7,7 @@
 Impact_CoC(input_name, input)
 }
 \arguments{
-\item{input_name}{currently only 'per_disability' is supported}
+\item{input_name}{currently only 'Data_per_disability' is supported}
 
 \item{input}{the input data, e.g. the variable 'per_disability'}
 }

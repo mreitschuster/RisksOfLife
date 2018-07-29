@@ -7,7 +7,7 @@
 Event_Accident(input_name, input)
 }
 \arguments{
-\item{input_name}{currently only 'none' and 'bool_war' are supported.}
+\item{input_name}{currently only 'Data_none' and 'Data_bool_War' are supported.}
 
 \item{input}{e.g. bool_war}
 }

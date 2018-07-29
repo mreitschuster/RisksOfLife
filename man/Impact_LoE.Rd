@@ -7,9 +7,9 @@
 Impact_LoE(input_name, input)
 }
 \arguments{
-\item{input_name}{currently only 'bool_dead' is supported}
+\item{input_name}{currently only 'Data_bool_dead' is supported}
 
-\item{input}{the input data, e.g. the variable 'bool_dead'}
+\item{input}{the input data, e.g. the variable 'Data_bool_dead'}
 }
 \value{
 data_monetaryLoss

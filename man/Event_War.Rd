@@ -7,7 +7,7 @@
 Event_War()
 }
 \arguments{
-\item{input_name}{currently only 'none' is supported}
+\item{input_name}{currently only 'Data_none' is supported}
 
 \item{input}{currently unused}
 }

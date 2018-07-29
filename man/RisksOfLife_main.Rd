@@ -2,17 +2,14 @@
 % Please edit documentation in R/Main.R
 \name{RisksOfLife_main}
 \alias{RisksOfLife_main}
-\title{calculate stuff for RisksOfLife}
+\title{Main R file to show the dataflow of RisksOfLife}
 \usage{
 RisksOfLife_main()
-}
-\arguments{
-\item{graph}{The graph object representing the neo4j database as produced by Rneo4j}
 }
 \value{
 nothing
 }
 \description{
 This function is the main function for RisksOfLife. not sure if I will keep it. I used it to check whether the whole concept actually calculates plausible results.
-It will likely bee repacled by a more sophisticated API connecting the results to an GUI
+It will likely be replaced by jaavascript that then directly accesses the "Graph*"-functions
 }
