@@ -18,9 +18,11 @@ Graph_getAllPaths<-function(Rgraph, startNode, endNode, onlyActive){
     onlyActive=FALSE
   }
   
+  return(print(Rgraph))
+  
   # show all next hops that have the correct start node and if onlyActive is true, show only the active ones
-  #paths_next_step=Rgraph[Rgraph[,'In']==startNode & (!onlyActive | as.logical(Rgraph[,'Active'])),] # it seems opencpu is not forwarding header names
-  paths_next_step=Rgraph[Rgraph[,1]==startNode & (!onlyActive | as.logical(Rgraph[,4])),]
+  paths_next_step=Rgraph[Rgraph[,'In']==startNode & (!onlyActive | as.logical(Rgraph[,'Active'])),] 
+
   if (nrow(paths_next_step)==0){stop('Graph_getAllPaths: no paths found from startNode')}
   paths=list(paths_next_step[1,,drop=FALSE])
   if (nrow(paths_next_step)>1){
