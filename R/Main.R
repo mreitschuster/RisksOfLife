@@ -9,6 +9,7 @@
 
 
 RisksOfLife_main <- function(x){
+  
   # Build the graph. 
   Rgraph=Graph_Build()
 
@@ -17,7 +18,6 @@ RisksOfLife_main <- function(x){
 
   #  calculate risks for all given paths
   path_results=Graph_calculate_paths(paths)
-  
-  y=list(bla='I am desperate to get JS running....')
-  return(y)
+
+  return(paths)
 }
