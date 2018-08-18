@@ -4,7 +4,7 @@
 \alias{RisksOfLife_main}
 \title{Main R file to show the dataflow of RisksOfLife}
 \usage{
-RisksOfLife_main()
+RisksOfLife_main(x)
 }
 \value{
 path_results

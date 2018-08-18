@@ -18,7 +18,7 @@ Graph_getAllPaths<-function(Rgraph, startNode, endNode, onlyActive){
     onlyActive=FALSE
   }
   
-  return(print(Rgraph))
+ # return(print(Rgraph))
   
   # show all next hops that have the correct start node and if onlyActive is true, show only the active ones
   paths_next_step=Rgraph[Rgraph[,'In']==startNode & (!onlyActive | as.logical(Rgraph[,'Active'])),] 
