@@ -12,7 +12,7 @@ RisksOfLife_main <- function(x){
   
   # Build the graph. 
   Rgraph=Graph_Build()
-
+  
   # get all active routes between risk and loss
   paths<-Graph_getAllPaths(Rgraph, startNode= 'Risk', endNode='Monetary_Loss', onlyActive=TRUE)
 
@@ -21,4 +21,10 @@ RisksOfLife_main <- function(x){
 
   
   return(paths)
+  
+  
+  # install.packages("roxygen2")
+  # setwd(".")
+  # document()    # create the NAMESPACE file
+  
 }
