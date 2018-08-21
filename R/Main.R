@@ -22,9 +22,11 @@ RisksOfLife_main <- function(x){
   
   return(paths)
   
-  
+  if (F){x
   # install.packages("roxygen2")
-  # setwd(".")
-  # document()    # create the NAMESPACE file
-  
+    library("devtools")
+    #library("roxygen2")
+    setwd(".")
+    document()    # create the NAMESPACE file
+  }  
 }

@@ -25,21 +25,42 @@ Graph_Build <- function(){
 }
 
 
-#' Convert the RiskOfLife specific graph format to igraph
+#' Convert the RiskOfLife specific graph format to a igraph compatible node dataframe
 #' @param Rgraph the Rgraph RoL object
 #' @param onlyActive only consider active relations
-#' @return igraph The object that represents the graph structure / the causal chain
+#' @return Nodes  data frame that should be compatible with igraph's graph_from_data_frame function
 #' @export 
 #' 
-Graph_convert_to_igraph <- function(Rgraph, onlyActive){
+Graph_convert_to_igraph_nodes <- function(Rgraph, onlyActive){
 
   if (FALSE){
     onlyActive=TRUE
   }
   Nodes=as.data.frame(unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"])))
-  Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
-  Edges$DataType=NULL
+  #Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
+  #Edges$DataType=NULL
+  return(Nodes)
 
-  g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
-  return(g)
+ # g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
+  #return(g)
+}
+
+
+#' Convert the RiskOfLife specific graph format to an igraph compatbile edges dataframe
+#' @param Rgraph the Rgraph RoL object
+#' @param onlyActive only consider active relations
+#' @return edges data frame that should be compatible with igraph's graph_from_data_frame function
+#' @export 
+#' 
+Graph_convert_to_igraph_edges <- function(Rgraph, onlyActive){
+  
+  if (FALSE){
+    onlyActive=TRUE
+  }
+  #Nodes=as.data.frame(unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"])))
+  Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
+  #Edges$DataType=NULL
+  return(Edges)
+  #g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
+  #return(g)
 }

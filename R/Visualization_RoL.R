@@ -23,9 +23,7 @@ server <- function(input, output) {
   # Build the graph. 
   Rgraph=Graph_Build()
 
-  # convert to igraph object
-  igraph_object=Graph_convert_to_igraph(Rgraph,T)
-  
+
   # get all active routes between risk and loss
   paths<-Graph_getAllPaths(Rgraph, startNode= 'Risk', endNode='Monetary_Loss', onlyActive=TRUE)
   
@@ -33,13 +31,24 @@ server <- function(input, output) {
   path_results=Graph_calculate_paths(paths)
   
   
+  Edges=Graph_convert_to_igraph_edges(Rgraph,T)
+  Edges=Edges[,c(1,3,2,4)]
+  Nodes=Graph_convert_to_igraph_nodes(Rgraph,T)
+  # modify the Rgraph object to make it look nice
+  
+  # convert to igraph object
+  g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
+  
+  l <- layout_nicely(g)  
+  l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
+  
   output$plot1 <- renderPlot({
     
   #  nodes <- data.frame(name=c("Risk", "Accident", "Death", "LoE","CoC","Loss"),
   #                      color=c("yellow", "red", "red", "green","green","blue"),
   #                      size=rep(40,6))
 
-    plot.igraph(igraph_object, canvas.width = 450, canvas.height = 450)
+    plot.igraph(g, layout=l,rescale=F, canvas.width = 450, canvas.height = 450)
   })
   
   
