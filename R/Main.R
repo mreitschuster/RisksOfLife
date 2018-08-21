@@ -8,7 +8,7 @@
 #' 
 
 
-RisksOfLife_main <- function(x){
+RisksOfLife_main <- function(){
   
   # Build the graph. 
   Rgraph=Graph_Build()
