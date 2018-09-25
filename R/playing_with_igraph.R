@@ -14,6 +14,7 @@ g2 <- graph( edges=c(1,2, 2,3, 3, 1), n=10 )
 plot(g2)   
 g2
 
+
 g3 <- graph( c("John", "Jim", "Jim", "Jill", "Jill", "John")) # named vertices
 # When the edge list has vertex names, the number of nodes is not needed
 plot(g3)
