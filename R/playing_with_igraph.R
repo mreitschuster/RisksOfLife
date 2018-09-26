@@ -31,3 +31,4 @@ plot(graph_from_literal(a--+b, b+--c))
 
 
 plot(graph_from_literal(a+-+b, b+-+c)) 
+
