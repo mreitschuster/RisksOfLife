@@ -19,14 +19,6 @@ RisksOfLife_main <- function(){
   #  calculate risks for all given paths
   path_results=Graph_calculate_paths(paths)
 
-  
   return(paths)
   
-  if (F){x
-  # install.packages("roxygen2")
-    library("devtools")
-    #library("roxygen2")
-    setwd(".")
-    document()    # create the NAMESPACE file
-  }  
 }
