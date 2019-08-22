@@ -1,7 +1,6 @@
 #' Build causality Graph for RisksOfLife
 #' 
 #' This will hopefully be replaced by a load functionality on existing graphs, together with a more intuitive way to create the graphs.
-#' @param none
 #' @return Rgraph The object that represents the graph structure / the causal chain
 #' @export 
 #' 

@@ -29,7 +29,15 @@ ui <- fluidPage(
 )
 
 
-
+#' Draw Rshiny Graph
+#' 
+#' This is to visualize the Risk of Life Graph in Rshiny
+#' 
+#' @param input input
+#' @param output output
+#' @return nothing
+#' @export 
+#' 
 server <- function(input, output) {
 
   
