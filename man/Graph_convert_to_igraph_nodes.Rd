@@ -4,7 +4,7 @@
 \alias{Graph_convert_to_igraph_nodes}
 \title{Convert the RiskOfLife specific graph format to a igraph compatible node dataframe}
 \usage{
-Graph_convert_to_igraph_nodes(Rgraph, onlyActive)
+Graph_convert_to_igraph_nodes(Rgraph, onlyActive = TRUE)
 }
 \arguments{
 \item{Rgraph}{the Rgraph RoL object}

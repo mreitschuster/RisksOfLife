@@ -30,7 +30,7 @@ Graph_Build <- function(){
 #' @return Nodes  data frame that should be compatible with igraph's graph_from_data_frame function
 #' @export 
 #' 
-Graph_convert_to_igraph_nodes <- function(Rgraph, onlyActive){
+Graph_convert_to_igraph_nodes <- function(Rgraph, onlyActive=TRUE){
 
   if (FALSE){
     onlyActive=TRUE
