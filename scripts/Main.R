@@ -7,9 +7,10 @@
 #' @export 
 #' 
 
-
 RisksOfLife_main <- function(){
   
+  library(igraph)
+  rm(list=ls())
   # Build the graph. 
   Rgraph=Graph_Build()
   

@@ -66,9 +66,9 @@ server <- function(input, output) {
   
   # convert to igraph object
   #g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
-  g <- graph_from_data_frame(Edges, directed=TRUE)
-  l <- layout_nicely(g)  
-  l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
+  g <- igraph::graph_from_data_frame(Edges, directed=TRUE)
+  l <- igraph::layout_nicely(g)  
+  l <- igraph::norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
   
   
 ######## build inputs ###########################################################################
@@ -95,8 +95,8 @@ server <- function(input, output) {
         selected_edges[i,"width"]=5
       }
     }
-    g <- graph_from_data_frame(selected_edges, directed=TRUE)
-    plot.igraph(g, layout=l,rescale=F, canvas.width = 450, canvas.height = 450,edge.arrow.size=2)
+    g <- igraph::graph_from_data_frame(selected_edges, directed=TRUE)
+    igraph::plot.igraph(g, layout=l,rescale=F, canvas.width = 450, canvas.height = 450,edge.arrow.size=2)
   })
   
   output$info <- renderText({

@@ -7,9 +7,9 @@
 #' @export 
 #' 
 
-library(shiny)
-library(igraph)
-
+require(shiny)
+#require(igraph)
+require(visNetwork)
 
 ui <- fluidPage(
   titlePanel("Risks of Life"),
@@ -21,11 +21,11 @@ ui <- fluidPage(
       
     ),
     mainPanel(
-      plotOutput("plot1", click = "plot_click"),
-      br(),br(),
-      verbatimTextOutput("info")
+      visNetworkOutput("network", height="1200px")  #,
+      #br(),br(),
+      #verbatimTextOutput("info")
     )
-  )
+  )  
 )
 
 
@@ -59,17 +59,9 @@ server <- function(input, output) {
   }
 
   # get static igraph object
-  Edges=Graph_convert_to_igraph_edges(Rgraph,T)
-  Edges=Edges[,c(1,3,2,4)]
-  Nodes=Graph_convert_to_igraph_nodes(Rgraph,T)
-  # modify the Rgraph object to make it look nice
-  
-  # convert to igraph object
-  #g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
-  g <- graph_from_data_frame(Edges, directed=TRUE)
-  l <- layout_nicely(g)  
-  l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
-  
+  Edges=Graph_convert_to_visNetwork_edges(Rgraph,T)
+  Nodes=Graph_convert_to_visNetwork_nodes(Rgraph,T)
+
   
 ######## build inputs ###########################################################################
   output$ui_SelectPaths <- renderUI({
@@ -81,22 +73,22 @@ server <- function(input, output) {
   })  
   
 ######## output ###########################################################################  
-  output$plot1 <- renderPlot({
+  output$network <- renderVisNetwork({
 
-    selected_edges=Edges
-    selected_edges[,"color"]=rep('grey',nrow(selected_edges))
-    selected_edges[,"width"]=rep(1,nrow(selected_edges))
-
-    for (i in 1:nrow(selected_edges)){
-      flag_found=F
-      tmp_str=paste(selected_edges[i,1],selected_edges[i,2],sep =' -> ')
-      if(any(grepl(tmp_str,input$SelectPath))){
-        selected_edges[i,"color"]="red"
-        selected_edges[i,"width"]=5
-      }
-    }
-    g <- graph_from_data_frame(selected_edges, directed=TRUE)
-    plot.igraph(g, layout=l,rescale=F, canvas.width = 450, canvas.height = 450,edge.arrow.size=2)
+    #visNetwork(Nodes, Edges, width = "100%")
+    visNetwork(Nodes, Edges) %>%
+    visEdges(arrows='to',smooth=F)%>%
+    visOptions(manipulation = TRUE)  %>%
+    visPhysics(solver='barnesHut') %>% # 'barnesHut', 'repulsion', 'hierarchicalRepulsion', 'forceAtlas2Based'. 
+    visPhysics(maxVelocity=50) %>% 
+    visPhysics(minVelocity=0.1) %>% 
+    visPhysics(timestep=0.5) %>% 
+    visPhysics(stabilization=list(
+      enabled = TRUE,
+      onlyDynamicEdges = TRUE,
+      fit = TRUE)) %>% 
+    visPhysics(enabled=F)
+ #   visOptions(nodesIdSelection = TRUE)
   })
   
   output$info <- renderText({
