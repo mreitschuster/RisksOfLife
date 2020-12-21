@@ -1,0 +1,19 @@
+https://datastorm-open.github.io/visNetwork/
+https://visjs.github.io/vis-network/examples/
+
+https://www.statworx.com/ch/blog/interactive-network-visualization-with-r/
+
+https://www.rdocumentation.org/packages/visNetwork/versions/1.0.0/topics/visEdges
+
+https://rdrr.io/cran/visNetwork/man/visPhysics.html
+
+
+tooltips, hovering, select by
+https://datastorm-open.github.io/visNetwork/options.html
+
+
+
+visgroups
+https://www.rdocumentation.org/packages/visNetwork/versions/2.0.9/topics/visGroups
+scheint eine 1:N zuordnung zu sein. 1 node is in exakt 1 gruppe
+
