@@ -20,75 +20,7 @@ Graph_Build <- function(){
     Rgraph=build_graph_Monetary_Loss(Rgraph)
     
     Rgraph=Rgraph[-1,] # remove the NA row
+    Rgraph=cbind(id=1:nrow(Rgraph),Rgraph)
     return(Rgraph)
 }
 
-
-#' Convert the RiskOfLife specific graph format to a igraph compatible node dataframe
-#' @param Rgraph the Rgraph RoL object
-#' @param onlyActive only consider active relations
-#' @return Nodes  data frame that should be compatible with igraph's graph_from_data_frame function
-#' @export 
-#' 
-Graph_convert_to_igraph_nodes <- function(Rgraph, onlyActive=TRUE){
-
-  Nodes=as.data.frame(unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"])))
-  #Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
-  #Edges$DataType=NULL
-  return(Nodes)
-
- # g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
-  #return(g)
-}
-
-
-#' Convert the RiskOfLife specific graph format to an igraph compatbile edges dataframe
-#' @param Rgraph the Rgraph RoL object
-#' @param onlyActive only consider active relations
-#' @return edges data frame that should be compatible with igraph's graph_from_data_frame function
-#' @export 
-#' 
-Graph_convert_to_igraph_edges <- function(Rgraph, onlyActive){
-  
-  #Nodes=as.data.frame(unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"])))
-  Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
-  #Edges$DataType=NULL
-  return(Edges)
-  #g <- graph_from_data_frame(Edges, directed=TRUE, vertices=Nodes)
-  #return(g)
-}
-
-
-#' Convert the RiskOfLife specific graph format to a visNetwork compatible node dataframe
-#' @param Rgraph the Rgraph RoL object
-#' @param onlyActive only consider active relations
-#' @return Nodes  data frame that should be compatible with visNetwork's graph_from_data_frame function
-#' @export 
-#' 
-Graph_convert_to_visNetwork_nodes <- function(Rgraph, onlyActive=TRUE){
-  id = unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"]))
-  label=id
-  Nodes=as.data.frame(cbind(id,label))
-  return(Nodes)
-  
-}
-
-
-#' Convert the RiskOfLife specific graph format to an visNetwork compatbile edges dataframe
-#' @param Rgraph the Rgraph RoL object
-#' @param onlyActive only consider active relations
-#' @return edges data frame that should be compatible with visNetwork's graph_from_data_frame function
-#' @export 
-#' 
-Graph_convert_to_visNetwork_edges <- function(Rgraph, onlyActive){
-  
-
-  Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
-  Fields=colnames(Edges)
-  Fields[Fields=="In"]="from"
-  Fields[Fields=="Out"]="to"
-  Fields[Fields=="DataType"]="label"
-  colnames(Edges)=Fields
-  return(Edges)
-
-}

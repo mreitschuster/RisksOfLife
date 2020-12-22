@@ -17,3 +17,6 @@ visgroups
 https://www.rdocumentation.org/packages/visNetwork/versions/2.0.9/topics/visGroups
 scheint eine 1:N zuordnung zu sein. 1 node is in exakt 1 gruppe
 
+https://github.com/datastorm-open/visNetwork/issues/131
+selecting pathways through a graph
+
