@@ -41,7 +41,7 @@ Graph_convert_to_igraph_edges <- function(Rgraph, onlyActive){
 #' @return Nodes  data frame that should be compatible with visNetwork's graph_from_data_frame function
 #' @export 
 #' 
-Graph_convert_to_visNetwork_nodes <- function(Rgraph, onlyActive=TRUE){
+Graph_convert_to_visNetwork_nodes <- function(Rgraph, paths, onlyActive=TRUE){
   id = unique(c(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"In"],Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),"Out"]))
   label=id
   Nodes=as.data.frame(cbind(id,label))
@@ -52,9 +52,9 @@ Graph_convert_to_visNetwork_nodes <- function(Rgraph, onlyActive=TRUE){
     for (j in 1:nrow(Nodes)){
       if(Nodes$id[j] %in% unique(rbind(paths[[i]][,"In"],paths[[i]][,"Out"]))){
         if(is.na(Nodes$paths[j])){
-          Nodes$paths[j]=paths.id[[i]]
+          Nodes$paths[j]=i
         }else{
-          Nodes$paths[j]=paste(Nodes$paths[j],",",paths.id[[i]])
+          Nodes$paths[j]=paste(Nodes$paths[j],",",i)
         }
       }
     }
@@ -70,7 +70,7 @@ Graph_convert_to_visNetwork_nodes <- function(Rgraph, onlyActive=TRUE){
 #' @return edges data frame that should be compatible with visNetwork's graph_from_data_frame function
 #' @export 
 #' 
-Graph_convert_to_visNetwork_edges <- function(Rgraph, onlyActive){
+Graph_convert_to_visNetwork_edges <- function(Rgraph, paths, onlyActive){
   
   
   Edges=as.data.frame(Rgraph[(!onlyActive | as.logical(Rgraph[,'Active'])),])
@@ -86,9 +86,9 @@ Graph_convert_to_visNetwork_edges <- function(Rgraph, onlyActive){
     for (j in 1:nrow(Edges)){
       if(any((paths[[i]][,"In"] %in%  Edges[j,"from"]) & (paths[[i]][,"Out"] %in%  Edges[j,"to"]))){
         if(is.na(Edges$paths[j])){
-          Edges$paths[j]=paths.id[[i]]
+          Edges$paths[j]=i
         }else{
-          Edges$paths[j]=paste(Edges$paths[j],",",paths.id[[i]])
+          Edges$paths[j]=paste(Edges$paths[j],",",i)
         }
       }
     }

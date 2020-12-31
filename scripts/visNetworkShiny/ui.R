@@ -9,15 +9,25 @@
 #
 
 library(shiny)
+require(visNetwork)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
  
   titlePanel("Risks of Life"),
+  
+  
+  # Debug Shiny
+  #https://www.r-bloggers.com/2019/02/a-little-trick-for-debugging-shiny/
+  # Add to your UI: 
+  actionButton("browser", "browser"),
+  #tags$script("$('#browser').hide();"),
+  
   sidebarLayout(
     sidebarPanel(
-      checkboxGroupInput("SelectPath","Select Paths",choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
+      #checkboxGroupInput("SelectPath","Select Paths",choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
+      checkboxGroupInput("SelectPath","Select Paths", inline=F)
       
       #uiOutput("ui_SelectPaths"),
       
@@ -27,7 +37,7 @@ shinyUI(fluidPage(
       
     ),
     mainPanel(
-      visNetworkOutput("network", height="1000px")  ,
+      visNetworkOutput("network", height="800px")  ,
       br(),br(),
       verbatimTextOutput("info")
     )
