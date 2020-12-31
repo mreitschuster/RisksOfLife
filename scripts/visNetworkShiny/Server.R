@@ -14,7 +14,20 @@ require(visNetwork)
 
 
 
+update_edges_per_selected_paths <- function(selection,paths.name,paths.to.edges.map){
 
+  #save(selection,file='dummy.Rdata')
+  if (is.null(selection)){
+    visNetworkProxy("network") %>%
+      visUnselectAll()
+  }else{
+    selection1=merge(x=as.data.frame(x=selection),y=paths.name,by.x='selection',by.y='paths.name')
+    selection2=merge(x=paths.to.edges.map,y=selection1,by.x='Path',by.y='paths.id')
+    edges_selection=selection2$Edge.Id
+    visNetworkProxy("network") %>%
+      visSelectEdges(id = edges_selection)
+  }
+}
 
 #### Server ##########################################################################
 shinyServer(function(input, output, session) {
@@ -56,30 +69,14 @@ shinyServer(function(input, output, session) {
   updateCheckboxGroupInput(session, "SelectPath",
                            label="Select Paths",
                            choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
-                           
-  #output$ui_SelectPaths <- renderUI({
-  #  checkboxGroupInput("SelectPath","Select Paths",choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
-  #})
-  
-  #output$ui_SelectNode <- renderUI({
-  # radioButtons("SelectNode","Select Node",choices=as.matrix(Nodes$label),selected = input$current_node_id[[1]], inline=F)
-  #})  
   
   ######## read inputs ###########################################################################  
   observe({
-    selection <- input$SelectPath
-    #save(selection,file='dummy.Rdata')
-    if (is.null(selection)){
-      edges_selection=NA
-    }else{
-      selection1=merge(x=as.data.frame(x=selection),y=paths.name,by.x='selection',by.y='paths.name')
-      selection2=merge(x=paths.to.edges.map,y=selection1,by.x='Path',by.y='paths.id')
-      edges_selection=selection2$Edge.Id
-    }
+    x=input$current_node_id # just added to ensure the edges are updated once a node is selected. 
+    # somehow visnetwork changes edges highlight/selection when nodes are selected, and I havent figured out how to prevent it.
     
-    #load(file='/home/hendl/Repos/RisksOfLife/scripts/visNetworkShiny/dummy.Rdata')
-    visNetworkProxy("network") %>%
-      visSelectEdges(id = edges_selection)
+    update_edges_per_selected_paths(selection = input$SelectPath,paths.name,paths.to.edges.map)
+
   })
   
   ######## output ###########################################################################  
@@ -95,17 +92,26 @@ shinyServer(function(input, output, session) {
                    enabled = TRUE,
                    onlyDynamicEdges = TRUE,
                    fit = TRUE),
-                 enabled=F)  %>% 
+                 enabled = F)  %>% 
+      visOptions(highlightNearest = F) %>%
+      visInteraction(navigationButtons = TRUE,
+                    # selectConnectedEdges=F,
+                     selectable = T) %>%
       #visOptions(selectedBy = list(variable = "paths", multiple = T, highlight = T),
       #           nodesIdSelection = list(enabled = T, useLabels = T))  %>% 
-      visEdges(color = list(color = "grey",highlight ="blue"))
+      visNodes(color = list(color = "grey",highlight ="red")) %>%
+      visEdges(color = list(color = "grey",highlight ="blue"))   %>%
+      visEvents(selectNode = "function(nodes) {Shiny.setInputValue('current_node_id', nodes.nodes,{priority: 'event'});}") %>%
+      visEvents(dragStart = "function(nodes)  {Shiny.setInputValue('current_node_id', nodes.nodes,{priority: 'event'});}")
+    #%>%
+#      visEvents(selectNode="function() {update_edges_per_selected_paths(selection = input$SelectPath,paths.name,paths.to.edges.map)}")
   })
   
   output$info <- renderText({
     #graph=visNetworkProxy("network")
     #paste0("visgetselectededges ", visGetSelectedEdges(graph, input = paste0(graph$id, "_selectedEdges")))
     
-    paste0(visNetworkProxy("network")  %>% visGetSelectedEdges())
+    paste0(input$current_node_id)
       
     #paste0("visgetselectededges ", visGetSelectedEdges(graph, input = paste0(graph$id, "_selectedEdges")))
     
