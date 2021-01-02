@@ -25,6 +25,27 @@ update_edges_per_selected_paths <- function(selection,paths.to.edges.map){
   }
 }
 
+
+calculate_path_weight <- function(path_results, threshold=0, flag_mean_xs_severity=T){
+  #calculate the size of the edges 
+  path_weight=vector(mode='numeric',length = length(path_results))
+  names(path_weight)=names(path_results)
+  for (i in 1:length(path_results)){
+    last_node=length(path_results[[i]])
+    probability = path_results[[i]][[last_node]][,'Probability']
+    severity = path_results[[i]][[last_node]][,'Severity']
+    
+    if (flag_mean_xs_severity==T){ # use the mean
+      xs_severity = pmax(0,severity-threshold)
+      path_weight[i]=sum(probability*xs_severity)/sum(probability)
+    }else{ # use the probability of exceeding the threshold
+      path_weight[i]=sum((severity>=threshold)*probability)
+    }
+  }
+  return(path_weight)
+}
+  
+
 #### Server ##########################################################################
 shinyServer(function(input, output, session) {
     
@@ -38,7 +59,7 @@ shinyServer(function(input, output, session) {
   
   # calculate risks for all given paths
   path_results=Graph_calculate_paths(paths)
-
+  
   # get visnetwork objects
   Edges=Graph_convert_to_visNetwork_edges(Rgraph,paths,T)
   Nodes=Graph_convert_to_visNetwork_nodes(Rgraph,paths,T)
@@ -66,7 +87,15 @@ shinyServer(function(input, output, session) {
   ######## output ###########################################################################  
   output$network <- renderVisNetwork({
 
-    visNetwork(Nodes, Edges) %>%
+    path_weight=calculate_path_weight(path_results, threshold=0, flag_mean_xs_severity=T)
+    # add some code here
+    x=merge(x=paths.to.edges.map,y=data.frame(paths=names(path_weight),path.weight=path_weight),by.x='Path',by.y='paths')
+    y=aggregate(x$path.weight,by=list(x$Edge.Id), FUN=sum)
+    names(y)=c('Edge.Id', 'value')
+    Edges.with.Width=merge(x=Edges,y=y,by.x='id',by.y='Edge.Id')
+    Edges.with.Width$value=Edges.with.Width$value/max(Edges.with.Width$value)*1
+    
+    visNetwork(Nodes, Edges.with.Width) %>%
       visEdges(arrows='to',smooth=F)%>%
       visPhysics(solver='barnesHut', # 'barnesHut', 'repulsion', 'hierarchicalRepulsion', 'forceAtlas2Based'. 
                  maxVelocity=50,
