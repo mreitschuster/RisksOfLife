@@ -44,16 +44,10 @@ shinyServer(function(input, output, session) {
   path_results=Graph_calculate_paths(paths)
   
   # get paths as strings
-  #paths.id=paste("Path",1:length(paths),sep = "")
   paths.id=1:length(paths)
-  paths.name=vector(length = length(paths))
-  for (i in 1:length(paths)){
-    paths.name[i]=paste(paths[[i]][,'In'],collapse=' -> ')
-    paths.name[i]=paste(paths.name[i],paths[[i]][nrow(paths[[i]]),'Out'],sep =' -> ')
-  }
-  #paths.name=cbind(paths.id,paths.name)
+  paths.name=names(paths)
   paths.name=data.frame(paths.id,paths.name)
-  
+
   
   # get static igraph object
   Edges=Graph_convert_to_visNetwork_edges(Rgraph,paths,T)
@@ -68,13 +62,14 @@ shinyServer(function(input, output, session) {
   
   updateCheckboxGroupInput(session, "SelectPath",
                            label="Select Paths",
-                           choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
+                           choices=names(paths),selected = names(paths), inline=F)
   
   ######## read inputs ###########################################################################  
   observe({
     x=input$current_node_id # just added to ensure the edges are updated once a node is selected. 
     # somehow visnetwork changes edges highlight/selection when nodes are selected, and I havent figured out how to prevent it.
-    
+    selection = input$SelectPath
+    #save(selection,file='dummy.Rdata')
     update_edges_per_selected_paths(selection = input$SelectPath,paths.name,paths.to.edges.map)
 
   })
