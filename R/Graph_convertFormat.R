@@ -52,9 +52,9 @@ Graph_convert_to_visNetwork_nodes <- function(Rgraph, paths, onlyActive=TRUE){
     for (j in 1:nrow(Nodes)){
       if(Nodes$id[j] %in% unique(rbind(paths[[i]][,"In"],paths[[i]][,"Out"]))){
         if(is.na(Nodes$paths[j])){
-          Nodes$paths[j]=i
+          Nodes$paths[j]=names(paths)[i]
         }else{
-          Nodes$paths[j]=paste(Nodes$paths[j],",",i)
+          Nodes$paths[j]=paste(Nodes$paths[j],",",names(paths)[i])
         }
       }
     }
@@ -86,9 +86,9 @@ Graph_convert_to_visNetwork_edges <- function(Rgraph, paths, onlyActive){
     for (j in 1:nrow(Edges)){
       if(any((paths[[i]][,"In"] %in%  Edges[j,"from"]) & (paths[[i]][,"Out"] %in%  Edges[j,"to"]))){
         if(is.na(Edges$paths[j])){
-          Edges$paths[j]=i
+          Edges$paths[j]=names(paths)[i]
         }else{
-          Edges$paths[j]=paste(Edges$paths[j],",",i)
+          Edges$paths[j]=paste(Edges$paths[j],",",names(paths)[i])
         }
       }
     }
@@ -110,10 +110,10 @@ Paths_convert_to_paths_nodes_map <- function(paths){
   paths.to.nodes.map=NULL
   for (i in 1:length(paths)){
     nodes.tmp=unique(rbind(paths[[i]][,"In",drop=F],paths[[i]][,"Out",drop=F]))
-    paths.tmp=rep(i,length(nodes.tmp))
+    paths.tmp=rep(names(paths)[i],length(nodes.tmp))
     paths.to.nodes.map=rbind(paths.to.nodes.map,data.frame(Path=paths.tmp,Node=nodes.tmp))
-    
   }
+  
   colnames(paths.to.nodes.map)=c('Path','Node')
   return(paths.to.nodes.map)
 }
@@ -128,7 +128,7 @@ Paths_convert_to_paths_edges_map <- function(paths,Edges){
   paths.to.edges.map=NULL
   for (i in 1:length(paths)){
     edges.id.tmp=as.numeric(as.character(paths[[i]][,"id",drop=F]))
-    paths.tmp=rep(i,length(edges.id.tmp))
+    paths.tmp=rep(names(paths)[i],length(edges.id.tmp))
     paths.to.edges.map=rbind(paths.to.edges.map,data.frame(Path=paths.tmp,Id=edges.id.tmp))
     
   }
