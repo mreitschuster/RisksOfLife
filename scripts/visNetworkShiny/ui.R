@@ -18,22 +18,28 @@ shinyUI(fluidPage(
   titlePanel("Risks of Life"),
   
   
-  # Debug Shiny
+  #### Debug Shiny ####
   #https://www.r-bloggers.com/2019/02/a-little-trick-for-debugging-shiny/
   # Add to your UI: 
   actionButton("browser", "browser"),
   #tags$script("$('#browser').hide();"),
   
+
   sidebarLayout(
+    #### Sidebar #####
     sidebarPanel(
-      #checkboxGroupInput("SelectPath","Select Paths",choices=paths.name$paths.name,selected = paths.name$paths.name, inline=F)
-      checkboxGroupInput("SelectPath","Select Paths", inline=F)
-      
-      #uiOutput("ui_SelectPaths"),
-      
-      #      textInput("PathFilter","Filter"),
-      #uiInput("ui_SelectPaths")
-      #uiOutput("ui_SelectNode")
+      #checkboxGroupInput("SelectPath","Select Paths", inline=F)
+      checkboxGroupInput("SelectPath","Select Paths", inline=F),
+      radioButtons("SeverityScale","Severity Scale (Edges)", 
+                   choices = list("Same size for all" = 'sameSize', 
+                                  "Linear" = 'linear',
+                                  "Logarithmic" = 'log') ,selected = 'sameSize'),
+      radioButtons("SeverityMeasure","Severity Measure (Edges)", 
+                   choices = list("(Conditional) Mean" = 'mean', 
+                                  "Probabilitiy" = 'prob'),selected = 'mean'),
+      numericInput("Threshold","Threshold",value=0),
+      checkboxInput("checkLabelEdges", "Edge Labels", value = FALSE),
+      checkboxInput("checkLabelNodes", "Node Labels", value = TRUE)
       
     ),
     mainPanel(
